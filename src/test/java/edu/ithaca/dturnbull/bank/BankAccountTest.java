@@ -91,4 +91,20 @@ class BankAccountTest {
         assertThrows(IllegalArgumentException.class, ()-> new BankAccount("", 100));
     }
 
+    @Test
+    void isAmountValidTest(){
+        //Positive Negative Value Equivalence Classes
+        assertTrue(BankAccount.isAmountValid(100.00));
+        assertTrue(BankAccount.isAmountValid(0.00)); //border
+        assertFalse(BankAccount.isAmountValid(-0.01)); //border
+        assertFalse(BankAccount.isAmountValid(-100.00));
+
+        //Decimal Place Equivalence Classes
+        assertFalse(BankAccount.isAmountValid(100.10000909));
+        assertFalse(BankAccount.isAmountValid(100.999)); //border
+        assertTrue(BankAccount.isAmountValid(100.00)); //border
+        assertTrue(BankAccount.isAmountValid(100.9));
+
+    }
+
 }
