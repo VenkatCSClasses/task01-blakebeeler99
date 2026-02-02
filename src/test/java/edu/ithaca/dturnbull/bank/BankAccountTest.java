@@ -10,7 +10,12 @@ class BankAccountTest {
     void getBalanceTest() {
         BankAccount bankAccount = new BankAccount("a@b.com", 200);
 
+        //EC test for integer starting balance
         assertEquals(200, bankAccount.getBalance(), 0.001);
+        assertNotEquals(100, bankAccount.getBalance(), 0.001);
+        //EC test for decimal starting balance
+        bankAccount = new BankAccount("a@b.com", 120.34);
+        assertEquals(120.34, bankAccount.getBalance(), 0.001);
     }
 
     @Test
