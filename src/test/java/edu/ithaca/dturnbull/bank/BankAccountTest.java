@@ -32,15 +32,6 @@ class BankAccountTest {
         assertTrue(BankAccount.isEmailValid( "a@b.com"));   // valid email address
         assertFalse( BankAccount.isEmailValid(""));         // empty string
 
-        assertFalse(BankAccount.isEmailValid("abc-@gmail.com"));
-        assertFalse(BankAccount.isEmailValid("abc..@b.com"));
-        assertFalse(BankAccount.isEmailValid("abc#@b.com"));
-        assertFalse(BankAccount.isEmailValid("abc@c.c"));
-        assertFalse(BankAccount.isEmailValid("abc@b.com"));
-        assertFalse(BankAccount.isEmailValid("abc@b..com"));
-        assertFalse(BankAccount.isEmailValid("abc@com"));
-        assertFalse(BankAccount.isEmailValid("abc@b#.com"));
-
         //Whole Email Tests:
 
         //Special Character Followed by Letter/Digit Equivalence Classes
@@ -71,7 +62,7 @@ class BankAccountTest {
         assertTrue(BankAccount.isEmailValid("abc@b.com")); 
         //Domain Period Existence Equivalence Classes
         assertFalse(BankAccount.isEmailValid("abc@com")); 
-        assertTrue(BankAccount.isEmailValid("abc@.com")); 
+        assertFalse(BankAccount.isEmailValid("abc@.com")); 
         //Domain Suffix Length Equivalence Classes
         assertFalse(BankAccount.isEmailValid("abc@b.c")); 
         assertTrue(BankAccount.isEmailValid("abc@b.cc")); 
