@@ -103,4 +103,16 @@ class BankAccountTest {
 
     }
 
+    @Test
+    void depositTest(){
+        BankAccount bankAccount = new BankAccount("a@b.com", 100);
+        bankAccount.deposit(50); //valid deposit EC
+        assertEquals(150, bankAccount.getBalance(), 0.001);
+        bankAccount.deposit(0); //zero deposit EC
+        assertEquals(150, bankAccount.getBalance(), 0.001);
+        assertThrows(IllegalArgumentException.class, () -> bankAccount.deposit(-20)); //negative deposit EC
+        assertThrows(IllegalArgumentException.class, () -> bankAccount.deposit(-0.01)); //border negative deposit EC
+        assertThrows(IllegalArgumentException.class, () -> bankAccount.deposit(0.011)); //border 3 decimal place EC
+    }
+
 }
