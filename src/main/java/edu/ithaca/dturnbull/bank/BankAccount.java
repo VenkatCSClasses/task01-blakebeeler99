@@ -126,4 +126,11 @@ public class BankAccount {
             return true;
         }
     }
+
+    /**
+     * @post increases the balance by amount if amount is valid
+     */
+    public void deposit(double amount){
+    }
+        
 }
