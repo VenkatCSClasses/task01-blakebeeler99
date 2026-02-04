@@ -138,5 +138,12 @@ public class BankAccount {
             throw new IllegalArgumentException("Cannot deposit invalid amount: " + amount);
         }
     }
+
+    /**
+     * @post transfers amount from this account to newAccount if amount is valid and sufficient funds exist
+     */
+    public void transfer(BankAccount newAccount, double amount) {
+        
+    }
         
 }
