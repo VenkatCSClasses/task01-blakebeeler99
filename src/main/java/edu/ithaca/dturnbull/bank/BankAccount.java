@@ -131,6 +131,12 @@ public class BankAccount {
      * @post increases the balance by amount if amount is valid
      */
     public void deposit(double amount){
+        if (isAmountValid(amount)){
+            balance += amount;
+        }
+        else {
+            throw new IllegalArgumentException("Cannot deposit invalid amount: " + amount);
+        }
     }
         
 }
