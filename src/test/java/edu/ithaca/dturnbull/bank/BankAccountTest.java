@@ -115,4 +115,20 @@ class BankAccountTest {
         assertThrows(IllegalArgumentException.class, () -> bankAccount.deposit(0.011)); //border 3 decimal place EC
     }
 
+    @Test
+    void transferTest(){
+        BankAccount bankAccount1 = new BankAccount("a@b.com", 100);
+        BankAccount bankAccount2 = new BankAccount("a@b.com", 200);
+        bankAccount1.transfer(bankAccount2, 50); //valid transfer EC
+        assertEquals(50, bankAccount1.getBalance(), 0.001);
+        assertEquals(250, bankAccount2.getBalance(), 0.001);
+        bankAccount1.transfer(bankAccount2, 0); //zero transfer EC
+        assertEquals(50, bankAccount1.getBalance(), 0.001);
+        assertEquals(250, bankAccount2.getBalance(), 0.001);
+        assertThrows(IllegalArgumentException.class, () -> bankAccount1.transfer(bankAccount2, -30)); //negative transfer EC
+        assertThrows(IllegalArgumentException.class, () -> bankAccount1.transfer(bankAccount2, -0.01)); //border negative transfer EC
+        assertThrows(IllegalArgumentException.class, () -> bankAccount1.transfer(bankAccount2, 0.011)); //border 3 decimal place EC
+        assertThrows(InsufficientFundsException.class, () -> bankAccount1.transfer(bankAccount2, 100)); //insufficient funds EC
+    }
+
 }
