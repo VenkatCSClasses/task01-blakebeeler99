@@ -116,7 +116,7 @@ class BankAccountTest {
     }
 
     @Test
-    void transferTest(){
+    void transferTest() throws InsufficientFundsException{
         BankAccount bankAccount1 = new BankAccount("a@b.com", 100);
         BankAccount bankAccount2 = new BankAccount("a@b.com", 200);
         bankAccount1.transfer(bankAccount2, 50); //valid transfer EC

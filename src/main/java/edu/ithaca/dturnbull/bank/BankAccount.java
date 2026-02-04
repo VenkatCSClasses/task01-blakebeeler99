@@ -142,8 +142,16 @@ public class BankAccount {
     /**
      * @post transfers amount from this account to newAccount if amount is valid and sufficient funds exist
      */
-    public void transfer(BankAccount newAccount, double amount) {
-        
+    public void transfer(BankAccount newAccount, double amount) throws InsufficientFundsException {
+        if (!isAmountValid(amount)){
+            throw new IllegalArgumentException("Cannot transfer invalid amount: " + amount);
+        }
+        try {
+            this.withdraw(amount);
+            newAccount.deposit(amount);
+        } catch (InsufficientFundsException e) {
+            throw new InsufficientFundsException("Not enough money to transfer");
+        }
     }
         
 }
